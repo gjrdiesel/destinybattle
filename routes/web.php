@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/api/search/{console}/{name}', 'ApiController@searchPlayer');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
