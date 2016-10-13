@@ -1,5 +1,6 @@
 # Destiny Battle
 Laravel + VueJS + Destiny API
+![alt text](ss.png "Screen Shot")
 
 ## Install
 - `git clone git@github.com:gjrdiesel/destinybattle.git`
