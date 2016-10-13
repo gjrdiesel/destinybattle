@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Bungie\Bungie;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Destiny\Manifest\Update;
+use App\Destiny\Player;
 
 class ApiController extends Controller
 {
-    public function searchPlayer(Bungie $api, $console, $name)
+    public function searchPlayer(Player $api, $console, $name)
     {
-        return $api->SearchPlayer($console,$name);
+//        return $api->SearchPlayer($console,$name);
+        $manifest = new Update();
+        $manifest->cache();
     }
 }
