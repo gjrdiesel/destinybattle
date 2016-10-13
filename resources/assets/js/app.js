@@ -14,6 +14,7 @@ require('./bootstrap');
  */
 
 Vue.component('search', require('./components/Search.vue'));
+Vue.component('character-card', require('./components/CharacterCard.vue'));
 
 const app = new Vue({
     el: 'body'

@@ -10,41 +10,58 @@
 
                 <div class="radio">
                     <label>
-                        <input type="radio" name="console" value="1" checked="checked" v-model="console">
+                        <input type="radio" value="1" checked="checked" v-model="console">
                         Xbox
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="console" value="2" v-model="console">
+                        <input type="radio" value="2" v-model="console">
                         Playstation
                     </label>
                 </div>
 
             <div v-for="character in output.characters">
-                Light Level: {{ character.characterBase.powerLevel }}
+                <character-card :character="character"></character-card>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import CharacterCard from "./CharacterCard.vue";
     export default {
+        props: ['name'],
+        ready(){
+            this.gamertag = this.name;
+        },
         watch: {
-            gamertag(value){
-                this.$http.get('/api/search/' + this.console + '/' + value)
-                        .then(function (result)
-                        {
-                            this.output = result.data;
-                        })
+            gamertag(){
+                this.searchForPlayerByName()
+            },
+            console(){
+                this.searchForPlayerByName()
             }
+        },
+        methods: {
+          searchForPlayerByName(){
+              this.$http.get('/api/search/' + this.console + '/' + this.gamertag)
+                      .then(function (result)
+                      {
+                          this.output = result.data;
+                      })
+          }
         },
         data(){
             return {
                 gamertag: '',
                 console: 0,
-                output: ''
+                output: '',
+                name: '',
             };
+        },
+        components: {
+            CharacterCard
         }
     }
 </script>

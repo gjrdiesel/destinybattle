@@ -23,16 +23,13 @@
 
 <div class="container-fluid" style="margin-top:10%">
     <div class="col-md-4 col-md-offset-1">
-        <search name="itz hydrogen 1"></search>
+        <character-card></character-card>
     </div>
-    <div class="col-md-2 text-center">
+    <div class="col-md-1 text-center">
         <h1>VS</h1>
-        <div class="btn btn-danger form-control">
-            Fight!
-        </div>
     </div>
     <div class="col-md-4">
-        <search name="monzterxlv"></search>
+        <character-card></character-card>
     </div>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
