@@ -6,9 +6,9 @@ use GuzzleHttp\Client;
 
 class Bungie
 {
-    private $guzzle;
-    private $membershipType = 0;
-    private $destinyMembershipId = 0;
+    public $guzzle;
+    public $membershipType = 1;
+    public $destinyMembershipId = 0;   //
 
     public function __construct(Client $guzzle)
     {
@@ -25,7 +25,20 @@ class Bungie
         return $this->findCharacters();
     }
 
-    private function findMembershipIdByName($displayName)
+    public function AllTimePvPStats()
+    {
+        $url = "http://www.bungie.net/Platform/Destiny/Stats/Account/{$this->membershipType}/{$this->destinyMembershipId}/";
+
+        $response = $this->guzzle->get($url,[
+            'headers' => [
+                'X-API-Key' => env('BUNGIE_API')
+            ]
+        ]);
+
+        return json_decode($response->getBody()->getContents(), true)['Response']['mergedAllCharacters']['results']['allPvP']['allTime'];
+    }
+
+    public function findMembershipIdByName($displayName)
     {
         $url = "http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/{$this->membershipType}/{$displayName}/";
 
@@ -38,7 +51,7 @@ class Bungie
         return json_decode($response->getBody()->getContents(), true)['Response'][0];
     }
 
-    private function findCharacters()
+    public function findCharacters()
     {
         $url = "http://www.bungie.net/Platform/Destiny/{$this->membershipType}/Account/{$this->destinyMembershipId}/Summary/";
 
@@ -48,8 +61,17 @@ class Bungie
             ]
         ]);
 
+        /**
+         * If you're debugging this; you'll need to go to http://destinybattle.dev/api/search/1/itz%20hydrogen%201
+         *
+         * Remember, it's cached so run: php artisan cache:clear
+         *
+         */
         //dd(json_decode($response->getBody()->getContents(), true));
 
-        return json_decode($response->getBody()->getContents(), true)['Response']['data'];
+        return [
+            'display' => json_decode($response->getBody()->getContents(), true)['Response']['data'],
+            'pvpstats' => $this->AllTimePvPStats()
+        ];
     }
 }

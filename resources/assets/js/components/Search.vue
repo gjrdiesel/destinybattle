@@ -21,15 +21,18 @@
                     </label>
                 </div>
 
-            <div v-for="character in output.characters">
+            <div v-for="character in output.display.characters">
                 <character-card :character="character"></character-card>
             </div>
+
+            <crucible :stats="output.pvpstats"></crucible>
         </div>
     </div>
 </template>
 
 <script>
     import CharacterCard from "./CharacterCard.vue";
+    import Crucible from "./Crucible.vue";
     export default {
         props: ['name'],
         ready(){
@@ -61,7 +64,7 @@
             };
         },
         components: {
-            CharacterCard
+            CharacterCard, Crucible
         }
     }
 </script>

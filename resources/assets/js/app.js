@@ -13,9 +13,14 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
+Vue.component('search-page', require('./components/SearchPage.vue'));
+Vue.component('fight-page', require('./components/FightPage.vue'));
 Vue.component('search', require('./components/Search.vue'));
 Vue.component('character-card', require('./components/CharacterCard.vue'));
 
-const app = new Vue({
-    el: 'body'
+window.app = new Vue({
+    el: 'body',
+    data: {
+        currentView: 'search-page'
+    }
 });
