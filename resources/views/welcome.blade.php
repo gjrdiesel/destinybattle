@@ -22,18 +22,9 @@
 <body>
 
 <div class="container-fluid" style="margin-top:10%">
-    <div class="col-md-4 col-md-offset-1">
-        <search name="itz hydrogen 1"></search>
-    </div>
-    <div class="col-md-2 text-center">
-        <h1>VS</h1>
-        <div class="btn btn-danger form-control">
-            Fight!
-        </div>
-    </div>
-    <div class="col-md-4">
-        <search name="monzterxlv"></search>
-    </div>
+
+    <component :is="currentView"></component>
+
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
