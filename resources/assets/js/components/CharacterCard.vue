@@ -1,22 +1,23 @@
 <template>
-    <div id="card" :style="{ 'background-image': 'url(' + getEmblemBg() + ')' }">
+    <div class="character-box" :style="{ 'background-image': 'url(' + getEmblemBg() + ')' }">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-sm-3 col-md-3">
                 <img v-bind:src="getEmblem()">
             </div>
-            <div class="col-md-3">
-                <h4>{{ getClass() }}</h4>
-                <h6>{{ getRaceAndGender() }}</h6>
+            <div class="col-sm-4 col-md-4">
+                <h3 class="character-class-name">{{ getClass() }}</h3>
+                <h6 class="character-race-gender">{{ getRaceAndGender() }}</h6>
             </div>
-            <div class="col-md-3 col-md-offset-3">
-                <h3>{{ character.characterLevel }}</h3>
-                <div><span class="diamond"></span>{{ character.characterBase.powerLevel }}</div>
+            <div class="col-sm-5 col-md-5">
+                <h3 class="character-card-level">{{ character.characterLevel }}</h3><br />
+                <h4 class="character-card-light-level"><span class="diamond"></span>{{ character.characterBase.powerLevel }}</h4>
             </div>
         </div>
     </div>
 </template>
+
 <style>
-    #card {
+    .character-box {
         background: black;
         color: white;
         background-size: cover;
@@ -29,11 +30,32 @@
     .diamond:before {
         content: '♦ ';
     }
+    .character-class-name {
+        font-weight: bold;
+    }
+
+    .character-race-gender {
+        font-weight: bolder;
+    }
+
+    .character-card-level {
+        margin-right: 10%;
+        padding-bottom: 5px;
+        float: right;
+    }
+
+    .character-card-light-level {
+        margin-right: -15%;
+        color: yellow;
+        float: right;
+    }
+
     h3 {
         margin: 0;
         margin-top: 10px;
     }
 </style>
+
 <script>
     export default {
         props: ['character'],

@@ -9,8 +9,9 @@
     <meta name="author" content="justin">
     <title>Page Title</title>
 
-    <!-- Bootstrap -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,20 +22,46 @@
 </head>
 <body>
 
-<div class="container-fluid" style="margin-top:10%">
 
-    <component :is="currentView"></component>
+
+<div class="container-fluid no-padding" style="background-color: black">
+
+    <div class="image-banner">
+        <div class="image-overlay">
+            <div class="header-content">
+                <h1 class="text-center header-title">Destiny Stats</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <component :is="currentView"></component>
+    </div>
 
 </div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 <script>
     window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
     ]); ?>
 </script>
-<script src="/js/app.js"></script>
+
+{{--<script src="/js/app.js"></script>--}}
+<script src="{{ asset('/js/app.js') }}"></script>
+<script src="{{ asset('/js/plugins/app.js') }}"></script>
+
+<script>
+    $('body').flowtype({
+        minFont : 12,
+        maxFont : 18
+    });
+</script>
+
+
 </body>
 </html>

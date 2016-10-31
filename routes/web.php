@@ -49,11 +49,6 @@ Route::get('/fight', function () {
 //});
 
 
-
-
-
-
-
 Route::get('/api/search/{console}/{name}', 'ApiController@searchPlayer');
 Auth::routes();
 
