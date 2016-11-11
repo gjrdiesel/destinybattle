@@ -44,13 +44,23 @@ class ConnectToSqliteTest extends TestCase
      */
     public function break_into_rows()
     {
+        // Open a command line process to the recently downloaded database file and dump the database and then filter with 'grep' to only get the 'insert' data
         $file = popen('sqlite3 ' . glob(storage_path('app/mobileWorldContentPaths/*'))[0] . ' .dump DestinyInventoryItemDefinition | grep \'^INSERT INTO\'','r');
 
+        // Loop through the command line process line by line
         while (($buffer = fgets($file)) !== false) {
-            $re = '/{(.*)\'\);/';
-            preg_match_all($re, $buffer, $matches);
-            $json = collect(json_decode('{'.$matches[1][0],true));
 
+            // Setup a regex to grab everything between the two brackets like: { ..... }
+            $regex = '/({.*)\'\);/';
+
+            // Runs the regex against the current line and sets a '$matches' variable
+            preg_match_all($regex, $buffer, $matches);
+
+            // Grab the important part of the '$matches' variable, decode it into an array using json_decode (with 'true')
+            // and then put into a laravel collection
+            $json = collect(json_decode($matches[1][0],true));
+
+            // Save the json to the database
             InventoryItem::create($json->toArray());
         }
     }
