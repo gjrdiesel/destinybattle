@@ -5776,7 +5776,7 @@ button.close {
 | Homepage CSS
 ************************/
 .image-banner {
-  background: url("/destinybattle/public/img/homepage/header.jpg") center no-repeat;
+  background: url("/img/homepage/header.jpg") center no-repeat;
   background-size: cover;
   color: #cfcfcf; }
 

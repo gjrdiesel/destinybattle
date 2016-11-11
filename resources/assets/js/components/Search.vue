@@ -91,7 +91,8 @@
         },
         methods: {
           searchForPlayerByName(){
-              this.$http.get('/destinybattle/public/api/search/' + this.console + '/' + this.gamertag)
+//              this.$http.get('/destinybattle/public/api/search/' + this.console + '/' + this.gamertag)
+              this.$http.get('/api/search/' + this.console + '/' + this.gamertag)
                       .then(function (result)
                       {
                           this.output = result.data;

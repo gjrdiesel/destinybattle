@@ -64,8 +64,8 @@ class Bungie
         ]);
 
         return [
-            'display' => json_decode($response->getBody()->getContents(), true)['Response']['data'],
-            'pvpstats' => $this->AllTimePvPStats(),
+           // 'display' => json_decode($response->getBody()->getContents(), true)['Response']['data'],
+            //'pvpstats' => $this->AllTimePvPStats(),
             'displayItems' => $this->getAllDestinyItems()['Response']['definitions']
         ];
     }
